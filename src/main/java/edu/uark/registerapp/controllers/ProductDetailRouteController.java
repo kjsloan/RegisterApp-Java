@@ -16,7 +16,7 @@ import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;
 
 @Controller
-@RequestMapping(value = "/productDetail")
+@RequestMapping(value = "/productDetail")	// HERE IS WHERE THE PAGE IS LOCATED BASED ON HTTP REQUEST
 public class ProductDetailRouteController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start() {
