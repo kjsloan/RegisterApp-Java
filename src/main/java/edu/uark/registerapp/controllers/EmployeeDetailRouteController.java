@@ -49,8 +49,6 @@ public class EmployeeDetailRouteController extends BaseRouteController {
 		}
 		else
 			return new ModelAndView(ViewNames.EMPLOYEE_DETAIL.getViewName());
-
-		//return new ModelAndView(ViewNames.EMPLOYEE_DETAIL.getViewName());
 	}
 
 	@Autowired
