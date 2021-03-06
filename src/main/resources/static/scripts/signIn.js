@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event)
 {
+	// Empty
 });
 
 function validateForm()
