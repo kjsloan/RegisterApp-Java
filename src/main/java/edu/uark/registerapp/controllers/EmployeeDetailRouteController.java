@@ -1,5 +1,7 @@
 package edu.uark.registerapp.controllers;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,10 +9,14 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.uark.registerapp.controllers.enums.ViewNames;
+import edu.uark.registerapp.models.api.ApiResponse;
+import edu.uark.registerapp.models.entities.ActiveUserEntity;
 import edu.uark.registerapp.models.entities.EmployeeEntity;
+import edu.uark.registerapp.models.repositories.ActiveUserRepository;
 import edu.uark.registerapp.models.repositories.EmployeeRepository;
 
 @Controller
@@ -51,6 +57,21 @@ public class EmployeeDetailRouteController extends BaseRouteController {
 			return new ModelAndView(ViewNames.EMPLOYEE_DETAIL.getViewName());
 	}
 
+	@RequestMapping(value = "/getClass", method = RequestMethod.GET)
+	public @ResponseBody boolean getUserClass(HttpServletRequest request)
+	{
+		Optional<ActiveUserEntity> user =this.activeUserRepository
+			.findBySessionKey(request.getSession().getId());
+
+		if (user.isPresent() && (user.get().getClassification() == 101))
+			return false;
+		else
+			return true;
+	}
+
 	@Autowired
 	EmployeeRepository employeeRepository;
+
+	@Autowired
+	ActiveUserRepository activeUserRepository;
 }

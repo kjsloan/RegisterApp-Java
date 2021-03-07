@@ -178,7 +178,7 @@ function getErrorMessageDisplayElement() {
 }
 // End getters and setters
 
-//Sign out
+// Sign out
 function signOutActionClickHandler() {
 	ajaxDelete("/api/signOut", (callbackResponse) => {
 		if ((callbackResponse.data != null)
@@ -191,4 +191,4 @@ function signOutActionClickHandler() {
 		}
 	});
 }
-//End sign out
+// End sign out

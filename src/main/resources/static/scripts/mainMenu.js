@@ -5,17 +5,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	document.getElementById("salesButton").addEventListener('click', displayError);
 	document.getElementById("cashierButton").addEventListener('click', displayError);
 
-	// Hide button from users that aren't managers
-	if(EmployeeClassification.isElevatedUser())
-	{
-		document.getElementById("employeeButton").style.visbility="hidden";
-		document.getElementById("salesButton").style.visbility="hidden";
-		document.getElementById("cashierButton").style.visbility="hidden";
-	}
+	// Get user classification with AJAX
+	ajaxGet("/employeeDetail/getClass", (callbackResponse) => {
+		if (isSuccessResponse(callbackResponse))
+		{
+			if (callbackResponse.data == false)
+			{
+				document.getElementById("employeeButton").style.display = "none";
+				document.getElementById("salesButton").style.display = "none";
+				document.getElementById("cashierButton").style.display = "none";
+			}
+		}
+	});
 });
-
-
-
 
 // Navigate to products listing page
 function goToProductListing(event)
